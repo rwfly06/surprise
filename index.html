@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Ulang Tahun! 🎂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Layar pembuka: kado -->
+  <div id="intro" class="intro">
+    <div class="gift" id="gift">
+      <div class="gift-lid"></div>
+      <div class="gift-box"></div>
+      <div class="gift-ribbon"></div>
+    </div>
+    <p class="intro-text">Ada kejutan untukmu…<br /><span>ketuk kadonya! 🎁</span></p>
+  </div>
+
+  <!-- Halaman utama -->
+  <main id="main" class="main hidden">
+    <canvas id="confetti"></canvas>
+    <div id="balloons" class="balloons"></div>
+
+    <section class="card">
+      <p class="pre-title">🎉 Hari ini spesial banget 🎉</p>
+      <h1 class="title">Selamat Ulang Tahun!</h1>
+      <h2 class="name" id="name">Kak Santika Anastasya 💖</h2>
+
+      <div class="photo-frame">
+        <div class="photo-wrap">
+          <img id="photo" src="assets/foto.jpg" alt="Foto kakak sepupu" />
+          <div class="photo-fallback" id="photoFallback" hidden>💐</div>
+        </div>
+        <p class="photo-caption">bertambah umur, makin cantik ✨</p>
+      </div>
+
+      <p class="message" id="message"></p>
+
+      <div class="cake" id="cake" title="Tiup lilinnya!">
+        <div class="candle">
+          <div class="flame" id="flame"></div>
+        </div>
+        <div class="cake-top"></div>
+        <div class="cake-mid"></div>
+        <div class="cake-base"></div>
+        <div class="plate"></div>
+      </div>
+      <p class="hint" id="cakeHint">ketuk kue untuk tiup lilin 🕯️</p>
+
+      <button id="musicBtn" class="music-btn" type="button">🔇 Putar Melodi</button>
+    </section>
+
+    <footer class="footer">di buat oleh rwfly handsome untuk kakak sepupu terbaik nan tercantik, sekarang adakah seratus</footer>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
