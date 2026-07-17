@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Selamat Ulang Tahun! 🎂</title>
+  <title>Selamat Ulang Tahun, Bibi! 🌷</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
@@ -11,51 +11,115 @@
 </head>
 <body>
 
-  <!-- Layar pembuka: kado -->
+  <!-- Layar pembuka: bunga kuncup -->
   <div id="intro" class="intro">
-    <div class="gift" id="gift">
-      <div class="gift-lid"></div>
-      <div class="gift-box"></div>
-      <div class="gift-ribbon"></div>
+    <div class="bud" id="bud" title="Ketuk aku!">
+      <div class="bud-head">
+        <span class="bud-petal" style="--a:-75deg; --d:0.00s"></span>
+        <span class="bud-petal" style="--a:-45deg; --d:0.06s"></span>
+        <span class="bud-petal" style="--a:-15deg; --d:0.12s"></span>
+        <span class="bud-petal" style="--a:15deg;  --d:0.18s"></span>
+        <span class="bud-petal" style="--a:45deg;  --d:0.24s"></span>
+        <span class="bud-petal" style="--a:75deg;  --d:0.30s"></span>
+        <span class="bud-core"></span>
+      </div>
+      <div class="bud-stem"></div>
+      <span class="bud-leaf leaf-l"></span>
+      <span class="bud-leaf leaf-r"></span>
     </div>
-    <p class="intro-text">Ada kejutan untukmu…<br /><span>ketuk kadonya! 🎁</span></p>
+    <p class="intro-text">Ada sekuntum kejutan untukmu…<br /><span>ketuk bunganya! 🌷</span></p>
   </div>
 
   <!-- Halaman utama -->
   <main id="main" class="main hidden">
-    <canvas id="confetti"></canvas>
-    <div id="balloons" class="balloons"></div>
+    <canvas id="petals"></canvas>
+    <div id="floats" class="floats"></div>
 
     <section class="card">
-      <p class="pre-title">🎉 Hari ini spesial banget 🎉</p>
+      <span class="corner c-tl">🌸</span>
+      <span class="corner c-tr">🌺</span>
+      <span class="corner c-bl">🌼</span>
+      <span class="corner c-br">🌷</span>
+
+      <p class="pre-title">🌷 Sekuntum ucapan untuk hari istimewa 🌷</p>
       <h1 class="title">Selamat Ulang Tahun!</h1>
-      <h2 class="name" id="name">Kak Santika Anastasya 💖</h2>
+      <h2 class="name" id="name">Bibi Iche Andriyani 🌸</h2>
 
       <div class="photo-frame">
-        <div class="photo-wrap">
-          <img id="photo" src="assets/foto.jpg" alt="Foto kakak sepupu" />
-          <div class="photo-fallback" id="photoFallback" hidden>💐</div>
+        <div class="photo-gallery">
+          <div class="photo-wrap tilt-l">
+            <img class="gallery-photo" src="assets/foto1.jpg" alt="Foto bibi di pantai" />
+            <div class="photo-fallback" hidden>🌊🌷</div>
+          </div>
+          <div class="photo-wrap tilt-r">
+            <img class="gallery-photo" src="assets/foto2.jpg" alt="Foto bibi bersama saudara" />
+            <div class="photo-fallback" hidden>💐</div>
+          </div>
         </div>
-        <p class="photo-caption">bertambah umur, makin cantik ✨</p>
+        <p class="photo-caption">secantik bunga yang selalu mekar ✨</p>
       </div>
 
       <p class="message" id="message"></p>
 
-      <div class="cake" id="cake" title="Tiup lilinnya!">
-        <div class="candle">
-          <div class="flame" id="flame"></div>
+      <!-- Taman bunga interaktif -->
+      <div class="garden" id="garden" title="Mekarkan bunganya!">
+        <div class="flower">
+          <span class="f-petal" style="--a:-72deg"></span>
+          <span class="f-petal" style="--a:-36deg"></span>
+          <span class="f-petal" style="--a:0deg"></span>
+          <span class="f-petal" style="--a:36deg"></span>
+          <span class="f-petal" style="--a:72deg"></span>
+          <span class="f-core"></span>
+          <span class="f-stem"></span>
+          <span class="f-leaf"></span>
         </div>
-        <div class="cake-top"></div>
-        <div class="cake-mid"></div>
-        <div class="cake-base"></div>
-        <div class="plate"></div>
+        <div class="flower">
+          <span class="f-petal" style="--a:-72deg"></span>
+          <span class="f-petal" style="--a:-36deg"></span>
+          <span class="f-petal" style="--a:0deg"></span>
+          <span class="f-petal" style="--a:36deg"></span>
+          <span class="f-petal" style="--a:72deg"></span>
+          <span class="f-core"></span>
+          <span class="f-stem"></span>
+          <span class="f-leaf"></span>
+        </div>
+        <div class="flower">
+          <span class="f-petal" style="--a:-72deg"></span>
+          <span class="f-petal" style="--a:-36deg"></span>
+          <span class="f-petal" style="--a:0deg"></span>
+          <span class="f-petal" style="--a:36deg"></span>
+          <span class="f-petal" style="--a:72deg"></span>
+          <span class="f-core"></span>
+          <span class="f-stem"></span>
+          <span class="f-leaf"></span>
+        </div>
+        <div class="flower">
+          <span class="f-petal" style="--a:-72deg"></span>
+          <span class="f-petal" style="--a:-36deg"></span>
+          <span class="f-petal" style="--a:0deg"></span>
+          <span class="f-petal" style="--a:36deg"></span>
+          <span class="f-petal" style="--a:72deg"></span>
+          <span class="f-core"></span>
+          <span class="f-stem"></span>
+          <span class="f-leaf"></span>
+        </div>
+        <div class="flower">
+          <span class="f-petal" style="--a:-72deg"></span>
+          <span class="f-petal" style="--a:-36deg"></span>
+          <span class="f-petal" style="--a:0deg"></span>
+          <span class="f-petal" style="--a:36deg"></span>
+          <span class="f-petal" style="--a:72deg"></span>
+          <span class="f-core"></span>
+          <span class="f-stem"></span>
+          <span class="f-leaf"></span>
+        </div>
       </div>
-      <p class="hint" id="cakeHint">ketuk kue untuk tiup lilin 🕯️</p>
+      <p class="hint" id="gardenHint">ketuk taman untuk memekarkan bunga 🌷</p>
 
       <button id="musicBtn" class="music-btn" type="button">🔇 Putar Melodi</button>
     </section>
 
-    <footer class="footer">di buat oleh rwfly handsome untuk kakak sepupu terbaik nan tercantik, sekarang adakah seratus</footer>
+    <footer class="footer">di buat oleh rafly untuk bibi tersayang</footer>
   </main>
 
   <script src="js/script.js"></script>

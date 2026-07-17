@@ -1,23 +1,32 @@
 /* ===== Konfigurasi ===== */
-const NAMA = "Kak Santika Anastasya";
+const NAMA = "Bibi Iche Andriyani";
 const PESAN =
-  "Selamat bertambah umur, Kak Santika! 🎂 Semoga panjang umur, sehat selalu, " +
-  "makin cantik, makin bahagia, dan semua cita-citanya tercapai. " +
-  "Terima kasih sudah jadi kakak sepupu terbaik. 🥳";
+  "Selamat ulang tahun, Bibi Iche! 🌷 Semoga panjang umur, sehat selalu, dan " +
+  "hari-harinya senantiasa mekar penuh kebahagiaan seperti bunga di musim semi. " +
+  "Semoga setiap doa dan harapan Bibi tahun ini bermekaran indah. " +
+  "Terima kasih sudah menjadi bibi yang penuh kasih sayang. 💐";
 
-/* ===== Intro kado ===== */
+document.getElementById("name").textContent = NAMA + " 🌸";
+
+/* ===== Intro bunga kuncup ===== */
 const intro = document.getElementById("intro");
 const main = document.getElementById("main");
-const gift = document.getElementById("gift");
+const bud = document.getElementById("bud");
+let opened = false;
 
-gift.addEventListener("click", () => {
-  intro.classList.add("fade");
-  main.classList.remove("hidden");
-  setTimeout(() => intro.remove(), 900);
-  typeMessage();
-  startConfetti();
-  spawnBalloons();
-  startMelody(); // izin audio sudah didapat lewat klik ini
+bud.addEventListener("click", () => {
+  if (opened) return;
+  opened = true;
+  bud.classList.add("bloom");
+  setTimeout(() => {
+    intro.classList.add("fade");
+    main.classList.remove("hidden");
+    setTimeout(() => intro.remove(), 900);
+    typeMessage();
+    startPetals();
+    spawnFloats();
+    startMelody(); // izin audio sudah didapat lewat klik ini
+  }, 1100);
 });
 
 /* ===== Pesan efek ketik ===== */
@@ -32,21 +41,25 @@ function typeMessage() {
   })();
 }
 
-/* ===== Fallback foto ===== */
-const photo = document.getElementById("photo");
-function showPhotoFallback() {
-  photo.style.display = "none";
-  document.getElementById("photoFallback").hidden = false;
-}
-photo.addEventListener("error", showPhotoFallback);
-if (photo.complete && photo.naturalWidth === 0) showPhotoFallback();
+/* ===== Fallback foto (per foto galeri) ===== */
+document.querySelectorAll(".gallery-photo").forEach((img) => {
+  const show = () => {
+    img.style.display = "none";
+    img.nextElementSibling.hidden = false;
+  };
+  img.addEventListener("error", show);
+  if (img.complete && img.naturalWidth === 0) show();
+});
 
-/* ===== Konfeti ===== */
-function startConfetti() {
-  const canvas = document.getElementById("confetti");
+/* ===== Hujan kelopak bunga ===== */
+const PETAL_COLORS = ["#ffb7c5", "#ff8fab", "#ffd1dc", "#f9bec7", "#e8b7e5", "#fff0f5"];
+let petalCtx = null;
+
+function startPetals() {
+  const canvas = document.getElementById("petals");
   const ctx = canvas.getContext("2d");
-  const colors = ["#ff7eb3", "#f7c873", "#8f6bd8", "#7ee8fa", "#ff9ec7", "#fff"];
-  let pieces = [];
+  petalCtx = ctx;
+  let petals = [];
 
   function resize() {
     canvas.width = innerWidth;
@@ -55,53 +68,61 @@ function startConfetti() {
   resize();
   addEventListener("resize", resize);
 
-  for (let i = 0; i < 140; i++) {
-    pieces.push({
+  for (let i = 0; i < 90; i++) {
+    petals.push({
       x: Math.random() * canvas.width,
       y: Math.random() * -canvas.height,
-      w: 6 + Math.random() * 8,
-      h: 8 + Math.random() * 10,
-      color: colors[(Math.random() * colors.length) | 0],
-      speed: 1.5 + Math.random() * 3,
-      drift: -1 + Math.random() * 2,
+      rx: 3.5 + Math.random() * 3.5,   // jari-jari kelopak
+      ry: 6 + Math.random() * 5,
+      color: PETAL_COLORS[(Math.random() * PETAL_COLORS.length) | 0],
+      speed: 0.9 + Math.random() * 1.8,
+      phase: Math.random() * Math.PI * 2,
       rot: Math.random() * Math.PI,
-      rotSpeed: -0.08 + Math.random() * 0.16,
+      rotSpeed: -0.04 + Math.random() * 0.08,
     });
   }
 
   (function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (const p of pieces) {
+    for (const p of petals) {
       p.y += p.speed;
-      p.x += p.drift;
+      p.x += Math.sin(p.y * 0.012 + p.phase) * 0.9;
       p.rot += p.rotSpeed;
       if (p.y > canvas.height + 20) {
         p.y = -20;
         p.x = Math.random() * canvas.width;
       }
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-      ctx.restore();
+      drawPetal(ctx, p.x, p.y, p.rx, p.ry, p.rot, p.color, 0.9);
     }
+    drawBurst(ctx);
     requestAnimationFrame(draw);
   })();
 }
 
-/* ===== Balon ===== */
-function spawnBalloons() {
-  const wrap = document.getElementById("balloons");
-  const emojis = ["🎈", "🎈", "🎈", "🎀", "💖", "⭐"];
+function drawPetal(ctx, x, y, rx, ry, rot, color, alpha) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(rot);
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+/* ===== Bunga & kupu-kupu melayang ===== */
+function spawnFloats() {
+  const wrap = document.getElementById("floats");
+  const emojis = ["🦋", "🌸", "🌷", "🌹", "💐", "🌼", "🦋", "🌸"];
   for (let i = 0; i < 12; i++) {
     const b = document.createElement("span");
-    b.className = "balloon";
+    b.className = "float-item";
     b.textContent = emojis[(Math.random() * emojis.length) | 0];
     b.style.left = Math.random() * 95 + "vw";
-    b.style.fontSize = 2 + Math.random() * 2.2 + "rem";
-    b.style.animationDuration = 9 + Math.random() * 9 + "s";
-    b.style.animationDelay = Math.random() * 8 + "s";
+    b.style.fontSize = 1.6 + Math.random() * 2 + "rem";
+    b.style.animationDuration = 10 + Math.random() * 10 + "s";
+    b.style.animationDelay = Math.random() * 9 + "s";
     wrap.appendChild(b);
   }
 }
@@ -191,57 +212,61 @@ musicBtn.addEventListener("click", () => {
   }
 });
 
-/* ===== Tiup lilin ===== */
-const cake = document.getElementById("cake");
-const flame = document.getElementById("flame");
-const cakeHint = document.getElementById("cakeHint");
-let blown = false;
+/* ===== Taman bunga: mekar saat diketuk ===== */
+const garden = document.getElementById("garden");
+const gardenHint = document.getElementById("gardenHint");
+let bloomed = false;
 
-cake.addEventListener("click", () => {
-  if (blown) {
-    // nyalakan lagi
-    blown = false;
-    flame.classList.remove("out");
-    cakeHint.textContent = "ketuk kue untuk tiup lilin 🕯️";
+garden.addEventListener("click", () => {
+  if (bloomed) {
+    bloomed = false;
+    garden.classList.remove("bloomed");
+    gardenHint.textContent = "ketuk taman untuk memekarkan bunga 🌷";
     return;
   }
-  blown = true;
-  flame.classList.add("out");
-  cakeHint.textContent = "yeay! semoga semua doanya terkabul 🌟";
-  burstConfetti();
+  bloomed = true;
+  garden.classList.add("bloomed");
+  gardenHint.textContent = "semoga doa Bibi ikut bermekaran 🌸";
+  burstPetals();
 });
 
-/* ledakan konfeti kecil saat lilin ditiup */
-function burstConfetti() {
-  const canvas = document.getElementById("confetti");
-  const ctx = canvas.getContext("2d");
-  const colors = ["#ff7eb3", "#f7c873", "#8f6bd8", "#7ee8fa", "#fff"];
-  const cx = canvas.width / 2;
-  const cy = canvas.height / 2;
-  const parts = [];
-  for (let i = 0; i < 60; i++) {
+/* ledakan kelopak saat taman mekar */
+let burstParts = [];
+
+function burstPetals() {
+  const canvas = document.getElementById("petals");
+  const rect = garden.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  for (let i = 0; i < 50; i++) {
     const ang = Math.random() * Math.PI * 2;
-    const v = 3 + Math.random() * 6;
-    parts.push({
+    const v = 2.5 + Math.random() * 5;
+    burstParts.push({
       x: cx, y: cy,
-      vx: Math.cos(ang) * v, vy: Math.sin(ang) * v - 2,
-      size: 4 + Math.random() * 5,
-      color: colors[(Math.random() * colors.length) | 0],
-      life: 60 + Math.random() * 30,
+      vx: Math.cos(ang) * v, vy: Math.sin(ang) * v - 2.5,
+      rx: 3 + Math.random() * 3,
+      ry: 5 + Math.random() * 4,
+      rot: Math.random() * Math.PI,
+      rotSpeed: -0.1 + Math.random() * 0.2,
+      color: PETAL_COLORS[(Math.random() * PETAL_COLORS.length) | 0],
+      life: 70 + Math.random() * 40,
+      maxLife: 110,
     });
   }
-  (function anim() {
-    let alive = false;
-    for (const p of parts) {
-      if (p.life <= 0) continue;
-      alive = true;
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.15;
-      p.life--;
-      ctx.fillStyle = p.color;
-      ctx.fillRect(p.x, p.y, p.size, p.size);
-    }
-    if (alive) requestAnimationFrame(anim);
-  })();
+  if (!petalCtx && canvas) {
+    // taman diketuk sebelum kanvas jalan (tidak mungkin lewat alur normal, tapi aman)
+    startPetals();
+  }
+}
+
+function drawBurst(ctx) {
+  burstParts = burstParts.filter((p) => p.life > 0);
+  for (const p of burstParts) {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.12;
+    p.rot += p.rotSpeed;
+    p.life--;
+    drawPetal(ctx, p.x, p.y, p.rx, p.ry, p.rot, p.color, Math.min(1, p.life / 40));
+  }
 }
