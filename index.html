@@ -2,126 +2,371 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Selamat Ulang Tahun, Bibi! 🌷</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Happy Birthday, Mama! 🌷</title>
+  <meta name="description" content="Mama's Magical Birthday Experience — A Little Universe Filled With Love, Memories & Happiness." />
+  <meta name="theme-color" content="#F7C9D9" />
+  <meta property="og:title" content="Happy Birthday, Mama! 🌷" />
+  <meta property="og:description" content="A Little Universe Filled With Love, Memories & Happiness." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌷</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/sections.css" />
 </head>
-<body>
+<body class="is-locked">
+  <a class="skip-link" href="#home">Lewati ke konten</a>
 
-  <!-- Layar pembuka: bunga kuncup -->
-  <div id="intro" class="intro">
-    <div class="bud" id="bud" title="Ketuk aku!">
-      <div class="bud-head">
-        <span class="bud-petal" style="--a:-75deg; --d:0.00s"></span>
-        <span class="bud-petal" style="--a:-45deg; --d:0.06s"></span>
-        <span class="bud-petal" style="--a:-15deg; --d:0.12s"></span>
-        <span class="bud-petal" style="--a:15deg;  --d:0.18s"></span>
-        <span class="bud-petal" style="--a:45deg;  --d:0.24s"></span>
-        <span class="bud-petal" style="--a:75deg;  --d:0.30s"></span>
-        <span class="bud-core"></span>
-      </div>
-      <div class="bud-stem"></div>
-      <span class="bud-leaf leaf-l"></span>
-      <span class="bud-leaf leaf-r"></span>
+  <!-- ===== Loading screen ===== -->
+  <div id="loader" class="loader" role="status" aria-live="polite">
+    <div class="loader__flower" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
-    <p class="intro-text">Ada sekuntum kejutan untukmu…<br /><span>ketuk bunganya! 🌷</span></p>
+    <p class="loader__text">Preparing a little universe for Mama…</p>
+    <div class="loader__bar" aria-hidden="true"><span id="loaderBar"></span></div>
   </div>
 
-  <!-- Halaman utama -->
-  <main id="main" class="main hidden">
-    <canvas id="petals"></canvas>
-    <div id="floats" class="floats"></div>
+  <!-- ===== Opening: Magical Entrance ===== -->
+  <section id="opening" class="opening" aria-label="Pembukaan">
+    <div class="opening__sky" aria-hidden="true">
+      <span class="bokeh b1"></span><span class="bokeh b2"></span><span class="bokeh b3"></span>
+      <span class="bokeh b4"></span><span class="bokeh b5"></span>
+    </div>
+    <div class="opening__hills" aria-hidden="true" data-mouse="-10">
+      <span class="hill h1"></span><span class="hill h2"></span><span class="hill h3"></span>
+    </div>
+    <div class="opening__garden opening__garden--far" aria-hidden="true" data-mouse="-14"></div>
+    <div class="opening__garden opening__garden--near" aria-hidden="true" data-mouse="-26"></div>
+    <div class="opening__butterflies" aria-hidden="true"></div>
 
-    <section class="card">
-      <span class="corner c-tl">🌸</span>
-      <span class="corner c-tr">🌺</span>
-      <span class="corner c-bl">🌼</span>
-      <span class="corner c-br">🌷</span>
+    <div class="opening__stage">
+      <div class="opening__gift" id="introGift"></div>
+      <span class="opening__beam" aria-hidden="true"></span>
+    </div>
 
-      <p class="pre-title">🌷 Sekuntum ucapan untuk hari istimewa 🌷</p>
-      <h1 class="title">Selamat Ulang Tahun!</h1>
-      <h2 class="name" id="name">Bibi Iche Andriyani 🌸</h2>
+    <div class="opening__ui">
+      <p class="opening__kicker" data-text="opening.kicker">A little surprise is waiting for you…</p>
+      <button id="openSurprise" class="btn btn--primary btn--xl" type="button">
+        <span class="btn__icon" aria-hidden="true">🎁</span>
+        <span data-text="opening.button">OPEN YOUR SPECIAL SURPRISE</span>
+      </button>
+    </div>
 
-      <div class="photo-frame">
-        <div class="photo-gallery">
-          <div class="photo-wrap tilt-l">
-            <img class="gallery-photo" src="assets/foto1.jpg" alt="Foto bibi di pantai" />
-            <div class="photo-fallback" hidden>🌊🌷</div>
-          </div>
-          <div class="photo-wrap tilt-r">
-            <img class="gallery-photo" src="assets/foto2.jpg" alt="Foto bibi bersama saudara" />
-            <div class="photo-fallback" hidden>💐</div>
-          </div>
-        </div>
-        <p class="photo-caption">secantik bunga yang selalu mekar ✨</p>
-      </div>
+    <div class="opening__reveal" aria-live="polite">
+      <p class="reveal__line" data-text="opening.line1">Today Is All About You...</p>
+      <h1 class="reveal__title" data-text="opening.title">HAPPY BIRTHDAY, MAMA!</h1>
+      <p class="reveal__skip">tap to continue</p>
+    </div>
+    <div class="opening__flash" aria-hidden="true"></div>
+  </section>
 
-      <p class="message" id="message"></p>
+  <!-- ===== Fixed UI ===== -->
+  <canvas id="fx" class="fx-canvas" aria-hidden="true"></canvas>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
-      <!-- Taman bunga interaktif -->
-      <div class="garden" id="garden" title="Mekarkan bunganya!">
-        <div class="flower">
-          <span class="f-petal" style="--a:-72deg"></span>
-          <span class="f-petal" style="--a:-36deg"></span>
-          <span class="f-petal" style="--a:0deg"></span>
-          <span class="f-petal" style="--a:36deg"></span>
-          <span class="f-petal" style="--a:72deg"></span>
-          <span class="f-core"></span>
-          <span class="f-stem"></span>
-          <span class="f-leaf"></span>
-        </div>
-        <div class="flower">
-          <span class="f-petal" style="--a:-72deg"></span>
-          <span class="f-petal" style="--a:-36deg"></span>
-          <span class="f-petal" style="--a:0deg"></span>
-          <span class="f-petal" style="--a:36deg"></span>
-          <span class="f-petal" style="--a:72deg"></span>
-          <span class="f-core"></span>
-          <span class="f-stem"></span>
-          <span class="f-leaf"></span>
-        </div>
-        <div class="flower">
-          <span class="f-petal" style="--a:-72deg"></span>
-          <span class="f-petal" style="--a:-36deg"></span>
-          <span class="f-petal" style="--a:0deg"></span>
-          <span class="f-petal" style="--a:36deg"></span>
-          <span class="f-petal" style="--a:72deg"></span>
-          <span class="f-core"></span>
-          <span class="f-stem"></span>
-          <span class="f-leaf"></span>
-        </div>
-        <div class="flower">
-          <span class="f-petal" style="--a:-72deg"></span>
-          <span class="f-petal" style="--a:-36deg"></span>
-          <span class="f-petal" style="--a:0deg"></span>
-          <span class="f-petal" style="--a:36deg"></span>
-          <span class="f-petal" style="--a:72deg"></span>
-          <span class="f-core"></span>
-          <span class="f-stem"></span>
-          <span class="f-leaf"></span>
-        </div>
-        <div class="flower">
-          <span class="f-petal" style="--a:-72deg"></span>
-          <span class="f-petal" style="--a:-36deg"></span>
-          <span class="f-petal" style="--a:0deg"></span>
-          <span class="f-petal" style="--a:36deg"></span>
-          <span class="f-petal" style="--a:72deg"></span>
-          <span class="f-core"></span>
-          <span class="f-stem"></span>
-          <span class="f-leaf"></span>
+  <header class="topbar" id="topbar">
+    <a class="topbar__brand" href="#home"><span aria-hidden="true">🌷</span> <span data-text="recipient">Mama</span>'s Day</a>
+    <div class="topbar__actions">
+      <div class="music">
+        <button id="musicBtn" class="icon-btn music__toggle" type="button" aria-pressed="false" aria-label="Putar musik">
+          <span class="music__icon" aria-hidden="true">♫</span>
+          <span class="music__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <button id="musicMore" class="icon-btn" type="button" aria-expanded="false" aria-controls="musicPanel" aria-label="Pengaturan musik">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 10v4h4l5 5V5L7 10H3zm13.5 2A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+        </button>
+        <div id="musicPanel" class="music__panel glass" hidden>
+          <p class="music__now"><span aria-hidden="true">🎹</span> <span id="musicTitle">Soft Piano Lullaby</span></p>
+          <label class="music__label" for="volume">Volume</label>
+          <input id="volume" class="music__volume" type="range" min="0" max="100" step="1" value="60" />
+          <div class="music__tracks" id="musicTracks" role="radiogroup" aria-label="Pilih musik"></div>
         </div>
       </div>
-      <p class="hint" id="gardenHint">ketuk taman untuk memekarkan bunga 🌷</p>
+      <button id="fullscreenBtn" class="icon-btn" type="button" aria-label="Layar penuh" hidden>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M5 5h5V3H3v7h2V5zm9-2v2h5v5h2V3h-7zm5 16h-5v2h7v-7h-2v5zM5 14H3v7h7v-2H5v-5z"/></svg>
+      </button>
+      <button id="menuBtn" class="icon-btn" type="button" aria-expanded="false" aria-controls="menuPanel" aria-label="Menu navigasi">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 7h16v2H4zm0 4h16v2H4zm0 4h16v2H4z"/></svg>
+      </button>
+    </div>
+    <nav id="menuPanel" class="menu glass" aria-label="Navigasi section" hidden>
+      <ul class="menu__list" id="menuList"></ul>
+    </nav>
+  </header>
 
-      <button id="musicBtn" class="music-btn" type="button">🔇 Putar Melodi</button>
+  <nav class="dots" aria-label="Navigasi cepat"><ul id="dotNav"></ul></nav>
+
+  <button id="toTop" class="to-top" type="button" aria-label="Kembali ke atas">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 5l-7 7 1.4 1.4L11 8.8V20h2V8.8l4.6 4.6L19 12z"/></svg>
+  </button>
+
+  <main id="main" class="main">
+    <!-- ===== Hero ===== -->
+    <section id="home" class="section hero" data-label="Home">
+      <div class="hero__decor" aria-hidden="true">
+        <div class="hero__balloons" data-parallax="0.25"></div>
+        <div class="hero__butterflies"></div>
+      </div>
+      <div class="hero__inner">
+        <div class="hero__text">
+          <p class="kicker hero__anim" style="--d:.1s" data-text="hero.kicker">Mama's Magical Birthday Experience</p>
+          <h1 class="hero__title hero__anim" style="--d:.25s">
+            <span class="hero__title-top" data-text="hero.title">Happy Birthday,</span>
+            <span class="hero__title-name" data-text="hero.name">Mama</span>
+          </h1>
+          <p class="hero__subtitle hero__anim" style="--d:.45s" data-text="hero.subtitle">A Little Universe Filled With Love, Memories &amp; Happiness.</p>
+          <p class="hero__tagline hero__anim" style="--d:.6s" data-text="hero.tagline">To the most beautiful soul, the heart of our family, and the greatest blessing in our lives.</p>
+          <div class="hero__anim" style="--d:.8s">
+            <button class="btn btn--primary" type="button" data-scroll="memories">
+              <span data-text="hero.button">Discover Your Surprise</span>
+              <span class="btn__icon" aria-hidden="true">↓</span>
+            </button>
+          </div>
+        </div>
+        <div class="hero__visual hero__anim" style="--d:.35s">
+          <div class="hero__frame-wrap" data-mouse="18">
+            <div class="glass-frame" id="heroFrame">
+              <div class="glass-frame__photo" id="heroPhoto"></div>
+              <span class="glass-frame__shine" aria-hidden="true"></span>
+            </div>
+            <span class="hero__orn hero__orn--tl" aria-hidden="true" data-orn="rose"></span>
+            <span class="hero__orn hero__orn--tr" aria-hidden="true" data-orn="tulip"></span>
+            <span class="hero__orn hero__orn--bl" aria-hidden="true" data-orn="daisy"></span>
+            <span class="hero__orn hero__orn--br" aria-hidden="true" data-orn="lavender"></span>
+          </div>
+        </div>
+      </div>
+      <button class="scroll-cue" type="button" data-scroll="memories" aria-label="Gulir ke bawah"><span></span></button>
     </section>
 
-    <footer class="footer">di buat oleh rafly untuk bibi tersayang</footer>
+    <!-- ===== Gallery ===== -->
+    <section id="memories" class="section gallery" data-label="Memories">
+      <header class="section-head" data-reveal>
+        <p class="kicker">Mama's Memories</p>
+        <h2 class="section-title">Moments We Treasure</h2>
+        <p class="section-sub">Tap any photo to see it in a cinematic showcase.</p>
+      </header>
+
+      <div class="gallery-tabs glass" role="tablist" aria-label="Gaya galeri" data-reveal>
+        <button role="tab" id="tab-polaroid" aria-controls="panel-polaroid" aria-selected="true" type="button">📸 Polaroid</button>
+        <button role="tab" id="tab-carousel" aria-controls="panel-carousel" aria-selected="false" tabindex="-1" type="button">🎠 3D Carousel</button>
+        <button role="tab" id="tab-cards" aria-controls="panel-cards" aria-selected="false" tabindex="-1" type="button">💌 Memory Cards</button>
+      </div>
+
+      <div id="panel-polaroid" class="gallery-panel is-shown" role="tabpanel" aria-labelledby="tab-polaroid">
+        <div class="polaroid-wall" id="polaroidWall"></div>
+      </div>
+
+      <div id="panel-carousel" class="gallery-panel" role="tabpanel" aria-labelledby="tab-carousel" hidden>
+        <div class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel" aria-label="Carousel foto Mama">
+          <div class="carousel__stage"><div class="carousel__ring"></div></div>
+          <div class="carousel__controls">
+            <button class="icon-btn icon-btn--lg carousel__prev" type="button" aria-label="Foto sebelumnya">‹</button>
+            <div class="carousel__dots"></div>
+            <button class="icon-btn icon-btn--lg carousel__next" type="button" aria-label="Foto berikutnya">›</button>
+          </div>
+          <p class="hint">Swipe / drag to spin • tap the front photo to open</p>
+        </div>
+      </div>
+
+      <div id="panel-cards" class="gallery-panel" role="tabpanel" aria-labelledby="tab-cards" hidden>
+        <div class="memory-cards" id="memoryCards"></div>
+      </div>
+    </section>
+
+    <!-- ===== Timeline ===== -->
+    <section id="timeline" class="section timeline" data-label="Timeline">
+      <header class="section-head" data-reveal>
+        <p class="kicker">A Journey of Love</p>
+        <h2 class="section-title">Memory Timeline</h2>
+        <p class="section-sub">Little chapters of a beautiful story.</p>
+      </header>
+      <div class="timeline__wrap">
+        <span class="timeline__line" aria-hidden="true"></span>
+        <ol class="timeline__list" id="timelineList"></ol>
+      </div>
+    </section>
+
+    <!-- ===== Cake ===== -->
+    <section id="cake" class="section cake" data-label="Cake">
+      <header class="section-head" data-reveal>
+        <p class="kicker">Make a Wish</p>
+        <h2 class="section-title" data-text="cake.title">A Magical Birthday Cake</h2>
+        <p class="cake__instruction" data-text="cake.instruction">Make a Wish, Mama!</p>
+      </header>
+      <div class="cake__stage" id="cakeStage" data-reveal>
+        <span class="cake__halo" aria-hidden="true"></span>
+        <div class="cake__fallback" id="cakeFallback"></div>
+        <div class="cake__3d" id="cake3d" role="img" aria-label="Kue ulang tahun 3D bertingkat dengan lilin menyala"></div>
+        <span class="cake__loading" aria-hidden="true">✨ preparing the cake…</span>
+      </div>
+      <p class="hint" id="cakeHint">Close your eyes, make a wish, then blow the candles 🕯️</p>
+      <div class="cake__actions">
+        <button id="blowBtn" class="btn btn--primary" type="button"><span class="btn__icon" aria-hidden="true">🌬️</span> <span data-text="cake.button">BLOW THE CANDLES</span></button>
+        <button id="relightBtn" class="btn btn--ghost" type="button" hidden><span aria-hidden="true">🕯️</span> <span data-text="cake.relight">Light the candles again</span></button>
+      </div>
+      <p id="wishMessage" class="wish-message" aria-live="polite" hidden data-text="cake.wishMessage">May all your beautiful wishes come true.</p>
+    </section>
+
+    <!-- ===== Garden ===== -->
+    <section id="garden" class="section garden" data-label="Garden">
+      <div class="garden__layers" aria-hidden="true">
+        <div class="garden__layer garden__layer--sky"></div>
+        <div class="garden__layer garden__layer--hills" data-parallax="0.1"></div>
+        <div class="garden__layer garden__layer--far" data-parallax="0.07" data-mouse="-8"></div>
+        <div class="garden__layer garden__layer--mid" data-parallax="0.03" data-mouse="-16"></div>
+        <div class="garden__layer garden__layer--near" data-parallax="-0.04" data-mouse="-28"></div>
+        <div class="garden__hearts"></div>
+        <div class="garden__butterflies"></div>
+      </div>
+      <div class="garden__content">
+        <header class="section-head" data-reveal>
+          <p class="kicker">A World of Flowers</p>
+          <h2 class="section-title" data-text="garden.title">Mama's Magical Garden</h2>
+          <p class="section-sub" data-text="garden.subtitle">Every flower here blooms just for you.</p>
+        </header>
+
+        <div class="garden-card glass" data-reveal>
+          <button class="bloom-garden" id="bloomGarden" type="button" aria-pressed="false" aria-label="Mekarkan bunga">
+            <span class="flower" style="--h:88px"><span class="f-petal" style="--a:-72deg"></span><span class="f-petal" style="--a:-36deg"></span><span class="f-petal" style="--a:0deg"></span><span class="f-petal" style="--a:36deg"></span><span class="f-petal" style="--a:72deg"></span><span class="f-core"></span><span class="f-stem"></span><span class="f-leaf"></span></span>
+            <span class="flower" style="--h:100px"><span class="f-petal" style="--a:-72deg"></span><span class="f-petal" style="--a:-36deg"></span><span class="f-petal" style="--a:0deg"></span><span class="f-petal" style="--a:36deg"></span><span class="f-petal" style="--a:72deg"></span><span class="f-core"></span><span class="f-stem"></span><span class="f-leaf"></span></span>
+            <span class="bud" aria-hidden="true">
+              <span class="bud-head">
+                <span class="bud-petal" style="--a:-75deg; --d:0.00s"></span>
+                <span class="bud-petal" style="--a:-45deg; --d:0.06s"></span>
+                <span class="bud-petal" style="--a:-15deg; --d:0.12s"></span>
+                <span class="bud-petal" style="--a:15deg;  --d:0.18s"></span>
+                <span class="bud-petal" style="--a:45deg;  --d:0.24s"></span>
+                <span class="bud-petal" style="--a:75deg;  --d:0.30s"></span>
+                <span class="bud-core"></span>
+              </span>
+              <span class="bud-stem"></span>
+              <span class="bud-leaf leaf-l"></span>
+              <span class="bud-leaf leaf-r"></span>
+            </span>
+            <span class="flower" style="--h:100px"><span class="f-petal" style="--a:-72deg"></span><span class="f-petal" style="--a:-36deg"></span><span class="f-petal" style="--a:0deg"></span><span class="f-petal" style="--a:36deg"></span><span class="f-petal" style="--a:72deg"></span><span class="f-core"></span><span class="f-stem"></span><span class="f-leaf"></span></span>
+            <span class="flower" style="--h:90px"><span class="f-petal" style="--a:-72deg"></span><span class="f-petal" style="--a:-36deg"></span><span class="f-petal" style="--a:0deg"></span><span class="f-petal" style="--a:36deg"></span><span class="f-petal" style="--a:72deg"></span><span class="f-core"></span><span class="f-stem"></span><span class="f-leaf"></span></span>
+          </button>
+          <p class="hint" id="gardenHint" aria-live="polite" data-text="garden.hint">Tap the garden to make the flowers bloom 🌷</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Letter ===== -->
+    <section id="letter" class="section letter" data-label="Letter">
+      <header class="section-head" data-reveal>
+        <p class="kicker">From Our Hearts</p>
+        <h2 class="section-title" data-text="letter.title">A Letter For Mama</h2>
+        <p class="section-sub" data-text="letter.hint">Tap the heart seal to open</p>
+      </header>
+
+      <div class="letter__scene" data-reveal>
+        <button class="envelope" id="envelope" type="button" aria-label="Buka surat untuk Mama" aria-expanded="false" aria-controls="letterPaper">
+          <span class="envelope__back"></span>
+          <span class="envelope__peek"><span></span><span></span><span></span></span>
+          <span class="envelope__front"></span>
+          <span class="envelope__flap"></span>
+          <span class="envelope__seal" aria-hidden="true">♥</span>
+        </button>
+
+        <article class="letter-paper" id="letterPaper" hidden aria-live="polite">
+          <div class="letter-paper__inner">
+            <p class="letter-paper__text" id="letterText"></p>
+            <p class="letter-paper__sign" id="letterSign" hidden>
+              <span data-text="letter.signature">With all our love,</span>
+              <span class="letter-paper__name" data-text="letter.signatureName">Rafly</span>
+            </p>
+          </div>
+          <div class="letter-paper__actions">
+            <button class="btn btn--ghost btn--sm" id="letterSkip" type="button">Show full letter</button>
+            <button class="btn btn--ghost btn--sm" id="letterClose" type="button" hidden>Fold the letter</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Blessings ===== -->
+    <section id="wishes" class="section wishes" data-label="Wishes">
+      <header class="section-head" data-reveal>
+        <p class="kicker">Prayers &amp; Hopes</p>
+        <h2 class="section-title" data-text="blessings.title">Beautiful Wishes For You</h2>
+      </header>
+      <ul class="wishes__grid" id="wishesGrid"></ul>
+    </section>
+
+    <!-- ===== Gifts ===== -->
+    <section id="gifts" class="section gifts" data-label="Gifts">
+      <header class="section-head" data-reveal>
+        <p class="kicker">Surprise!</p>
+        <h2 class="section-title" data-text="gifts.title">Secret Gifts For You</h2>
+        <p class="section-sub" data-text="gifts.subtitle">Three little boxes, three little messages. Tap to open!</p>
+      </header>
+      <ul class="gifts__grid" id="giftsGrid"></ul>
+      <p class="gifts__count" id="giftsCount" aria-live="polite"></p>
+      <button class="btn btn--ghost gifts__next" id="giftsNext" type="button" data-scroll="finale" hidden data-text="gifts.allOpened">All gifts are open — one last surprise is waiting below ↓</button>
+    </section>
+
+    <!-- ===== Finale ===== -->
+    <section id="finale" class="section finale" data-label="Finale">
+      <div class="finale__bg" aria-hidden="true">
+        <span class="finale__rays"></span>
+        <div class="finale__balloons"></div>
+        <div class="finale__butterflies"></div>
+        <div class="finale__hearts"></div>
+        <div class="finale__flowers"></div>
+      </div>
+      <div class="finale__content">
+        <div class="frame3d" id="finaleFrame">
+          <div class="frame3d__inner">
+            <div class="frame3d__mat"><div class="frame3d__photo" id="finalePhoto"></div></div>
+            <span class="frame3d__shine" aria-hidden="true"></span>
+          </div>
+          <span class="frame3d__orn frame3d__orn--l" aria-hidden="true" data-orn="rose"></span>
+          <span class="frame3d__orn frame3d__orn--r" aria-hidden="true" data-orn="tulip"></span>
+        </div>
+        <h2 class="finale__title finale__step" data-text="finale.title">WE LOVE YOU, MAMA!</h2>
+        <p class="finale__subtitle finale__step" data-text="finale.subtitle">Forever grateful to have you in our lives.</p>
+        <p class="finale__birthday finale__step" data-text="finale.birthday">HAPPY BIRTHDAY!</p>
+        <p class="finale__blessing finale__step" data-text="finale.blessing">THANK YOU FOR BEING OUR GREATEST BLESSING.</p>
+        <p class="finale__closing finale__step" data-text="finale.closing">We love you, always and forever.</p>
+        <div class="finale__actions finale__step">
+          <button class="btn btn--primary" id="celebrateBtn" type="button"><span class="btn__icon" aria-hidden="true">🎉</span> Celebrate Again</button>
+          <button class="btn btn--ghost" id="replayBtn" type="button"><span aria-hidden="true">🎁</span> Replay the Surprise</button>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script src="js/script.js"></script>
+  <footer class="footer"><p data-text="footer">Dibuat dengan 💗 oleh Rafly untuk Mama tersayang</p></footer>
+
+  <!-- ===== Cinematic Photo Showcase ===== -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Cinematic photo showcase" hidden>
+    <div class="lightbox__bg" aria-hidden="true"><img alt="" /></div>
+    <figure class="lightbox__stage">
+      <img class="lightbox__img" alt="" />
+      <figcaption class="lightbox__meta">
+        <span class="chip lightbox__date"></span>
+        <h3 class="lightbox__title"></h3>
+        <p class="lightbox__caption"></p>
+      </figcaption>
+    </figure>
+    <span class="lightbox__counter"></span>
+    <button class="icon-btn icon-btn--lg lightbox__prev" type="button" aria-label="Foto sebelumnya">‹</button>
+    <button class="icon-btn icon-btn--lg lightbox__next" type="button" aria-label="Foto berikutnya">›</button>
+    <button class="icon-btn icon-btn--lg lightbox__close" type="button" aria-label="Tutup">✕</button>
+  </div>
+
+  <noscript><div class="noscript">Aktifkan JavaScript untuk melihat kejutan ulang tahun Mama 💗</div></noscript>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/decor.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/cake3d.js"></script>
+  <script src="js/sections.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
