@@ -857,6 +857,26 @@
   .btn--xl { padding: 14px 20px; letter-spacing: 0.03em; }
 }
 
+/* Kue tidak boleh lebih tinggi dari layar */
+.cake__stage { max-height: max(320px, 82vh); max-height: max(320px, 82svh); }
+
+/* HP posisi miring (landscape) / layar pendek */
+@media (orientation: landscape) and (max-height: 500px) {
+  .opening { flex-direction: row; gap: 6vw; }
+  .opening__stage { margin-top: 0; }
+  .opening__gift { --s: clamp(80px, 30vh, 150px); }
+  .opening__ui { margin-top: 0; align-items: flex-start; text-align: left; }
+  .opening__garden { scale: 0.6; transform-origin: 50% 100%; }
+  .opening__garden--far { bottom: 30px; }
+
+  .hero { padding-top: 80px; }
+
+  .lightbox__stage { flex-direction: row; justify-content: center; gap: 24px; padding: 16px 80px; }
+  .lightbox__img { max-width: 58%; max-height: calc(100vh - 32px); max-height: calc(100svh - 32px); }
+  .lightbox__meta { flex: 1; max-width: 300px; text-align: left; }
+  .lightbox__caption { font-size: 0.9rem; }
+}
+
 @media (min-width: 900px) {
   .hero__inner { grid-template-columns: 1.1fr 0.9fr; text-align: left; }
   .hero__tagline { margin-left: 0; }

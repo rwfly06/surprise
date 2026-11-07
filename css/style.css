@@ -1016,5 +1016,6 @@ body.is-entered .hero__anim { opacity: 1; transform: none; filter: none; }
   background: rgba(255, 255, 255, 0.35);
   cursor: pointer;
 }
+.scroll-cue::after { content: ""; position: absolute; inset: -8px -10px; }
 .scroll-cue span { position: absolute; left: 50%; top: 9px; width: 4px; height: 9px; margin-left: -2px; border-radius: 4px; background: var(--rose-deep); animation: cue 1.8s ease-in-out infinite; }
 @keyframes cue { 0% { opacity: 0; transform: translateY(0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(16px); } }
