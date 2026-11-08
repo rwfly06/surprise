@@ -145,9 +145,21 @@ music: { src: "assets/audio/music.mp3", title: "Judul Lagu", volume: 0.6, startO
 3. Pada **Source**, pilih **Deploy from a branch**. Pilih branch `main` dan folder
    `/ (root)`, lalu klik **Save**.
 4. Tunggu 1–2 menit. Website akan tersedia di:
-   `https://<username>.github.io/ultha/`
+   **https://rwfly06.github.io/surprise/**
 
 Semua path di website bersifat relatif, jadi tidak perlu konfigurasi tambahan.
+
+### Mengganti alamat link
+
+Alamat link mengikuti nama repository (`https://<username>.github.io/<nama-repo>/`).
+Untuk menggantinya, buka **Settings → General → Repository name** di GitHub, ubah
+namanya, lalu sesuaikan remote di komputer:
+
+```bash
+git remote set-url origin https://github.com/rwfly06/<nama-baru>.git
+```
+
+Link dengan nama lama tidak dialihkan otomatis, jadi bagikan link yang baru.
 
 ### Menjalankan di komputer sendiri
 
